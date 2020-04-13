@@ -22,8 +22,7 @@ void M4_IRQHandler(void)
 {
 	// Clear M4 Event
 	LPC_CREG->M4TXEVENT = 0;
-    Board_LED_Set(0, false);
-    __SEV();
+    Board_LED_Toggle(0);
 }
 
 

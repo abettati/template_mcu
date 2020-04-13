@@ -23,14 +23,6 @@ void SysTick_Handler(void)
 	__SEV();
 }
 
-void M0SUB_IRQHandler(void)
-{
-	// Clear M0SUB event
-	LPC_CREG->M0SUBTXEVENT = 0;
-	Board_LED_Set(0, true);
-	__SEV();
-}
-
 int main(void) {
 
     // Read clock settings and update SystemCoreClock variable
@@ -47,10 +39,8 @@ int main(void) {
     volatile static int i = 0 ;
 
     /* Start the tick timer */
-    //SysTick_Config(SystemCoreClock/ 100);
+    SysTick_Config(SystemCoreClock/ 100);
 
-    NVIC_EnableIRQ(M0SUB_IRQn);
-    __SEV();
     // Enter an infinite loop, just incrementing a counter
     while(1) {
         i++ ;
